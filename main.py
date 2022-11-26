@@ -61,7 +61,7 @@ with header:
                     st.write(f"m2: {calculation1} EUR ")
                     st.write(f"Battery: {battery_calc:.2f} EUR ")
                     st.write(f"Invertor: {calculation1 - invertor} EUR ")
-                    st.write(f"Final Price: {final_price} EUR ")
+                    st.write(f"Final Price: {final_price:.2f} EUR ")
                     st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
                     
                     
@@ -83,7 +83,7 @@ with header:
                     st.write(f"m2: {calculation1} EUR ")
                     st.write(f"Battery: {battery_calc:.2f} EUR ")
                     st.write(f"Invertor: {calculation1 - invertor} EUR ")
-                    st.write(f"Final Price: {final_price - percent} EUR ")
+                    st.write(f"Final Price: {final_price - percent:.2f} EUR ")
                     st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
         else:
             if contact_selected == "private":
@@ -100,7 +100,7 @@ with header:
                     st.write("------------------------")
                     st.write(f"m2: {calculation1} EUR ")
                     st.write(f"Invertor: {calculation1 - invertor} EUR ")
-                    st.write(f"Final Price: {final_price} EUR ")
+                    st.write(f"Final Price: {final_price:.2f} EUR ")
                     st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
                     
                     
@@ -120,7 +120,7 @@ with header:
                     st.write("------------------------")
                     st.write(f"m2: {calculation1} EUR ")
                     st.write(f"Invertor: {calculation1 - invertor} EUR ")
-                    st.write(f"Final Price: {final_price - percent} EUR ")
+                    st.write(f"Final Price: {final_price - percent:.2f} EUR ")
                     st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
         
         
