@@ -34,7 +34,7 @@ def callback():
 with header:
     
     
-    st.header("Configurator")
+    st.header("The Configurator")
     st_lottie(lottie_welcome, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
     question1 = ["private","corporate"]
     contact_selected = st.selectbox("What type of user are you?", options=question1)
