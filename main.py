@@ -39,7 +39,7 @@ with header:
     question1 = ["private","corporate"]
     contact_selected = st.selectbox("What type of user are you?", options=question1)
     
-    question2 = st.slider("How much m2", value=5000)
+    question2 = st.text_input("How much m2")
     question3 = ["Yes" , "No"]
     contact_selected2 = st.selectbox("Use Battery:", options=question3)
     Button_1 = st.button("Next", on_click=callback)
