@@ -5,6 +5,9 @@ from PIL import Image
 img = Image.open("web-management.png")
 st.set_page_config(page_title="Configurator", page_icon=img)
 
+
+
+
 def load_lottieurl(url:str):
     r = requests.get(url)
     if r.status_code != 200:
@@ -25,7 +28,7 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 lottie_welcome = load_lottieurl("https://assets6.lottiefiles.com/packages/lf20_oi5jzd9a.json")
 lottie_hello = load_lottieurl("https://assets10.lottiefiles.com/packages/lf20_5Q8WhFyObQ.json")
 header = st.container()
-configurator = st.container()
+header1 = st.container()
 if "button_clicked" not in st.session_state:
     st.session_state.button_clicked = False
 def callback():
@@ -34,15 +37,23 @@ def callback():
 with header:
     
     
-    st.header("The Configurator")
+    st.header("Configurator")
     st_lottie(lottie_welcome, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
     question1 = ["private","corporate"]
     contact_selected = st.selectbox("What type of user are you?", options=question1)
+    question4 = ["Flat Roof","Carport Roof", "Gable Roof"," Mansard Roof","Hip Roof"]
     
-    question2 = st.slider("How much m2", value=50000)
+    question2 = st.text_area("How Much m2:" , max_chars=15,height=10)
+    
     question3 = ["Yes" , "No"]
     contact_selected2 = st.selectbox("Use Battery:", options=question3)
+    contact_selected4 = st.selectbox("Type of Roof:",options=question4 )
     Button_1 = st.button("Next", on_click=callback)
+    
+    
+    
+    
+   
     if Button_1 or st.session_state.button_clicked:
         if contact_selected2 == "Yes":
             if contact_selected == "private":
@@ -50,7 +61,7 @@ with header:
                 contact_selected3 = st.selectbox("Type of Battery:",options=question4)
                 Button_2 = st.button("Finish", on_click=callback)
                 if Button_2:
-                    calculation1 = question2 * 88
+                    calculation1 = float(question2) * 88
                     battery_calc = float(contact_selected3) * 350
                     
                     invertor = float(question2) * 0.7
@@ -61,7 +72,7 @@ with header:
                     st.write(f"m2: {calculation1} EUR ")
                     st.write(f"Battery: {battery_calc:.2f} EUR ")
                     st.write(f"Invertor: {calculation1 - invertor} EUR ")
-                    st.write(f"Final Price: {final_price:.2f} EUR ")
+                    st.write(f"Final Price: {final_price} EUR ")
                     st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
                     
                     
@@ -70,7 +81,7 @@ with header:
                 contact_selected3 = st.selectbox("Type of Battery:",options=question4)
                 Button_2 = st.button("Finish", on_click=callback)
                 if Button_2:
-                    calculation1 = question2 * 88
+                    calculation1 = float(question2) * 88
                     battery_calc = float(contact_selected3) * 350
                     
                     invertor = float(question2) * 0.7
@@ -83,45 +94,52 @@ with header:
                     st.write(f"m2: {calculation1} EUR ")
                     st.write(f"Battery: {battery_calc:.2f} EUR ")
                     st.write(f"Invertor: {calculation1 - invertor} EUR ")
-                    st.write(f"Final Price: {final_price - percent:.2f} EUR ")
+                    st.write(f"Final Price: {final_price - percent} EUR ")
                     st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
         else:
             if contact_selected == "private":
                 
-                Button_2 = st.button("Finish", on_click=callback)
-                if Button_2:
-                    calculation1 = question2 * 88
+                
+                
+                
+                calculation1 = float(question2) * 88
                     
+                
+                invertor = float(question2) * 0.5
+                final_price = calculation1 - invertor + calculation1 
                     
-                    invertor = float(question2) * 0.5
-                    final_price = calculation1 - invertor + calculation1 
-                    
-                    st.write("This is Your Price:")
-                    st.write("------------------------")
-                    st.write(f"m2: {calculation1} EUR ")
-                    st.write(f"Invertor: {calculation1 - invertor} EUR ")
-                    st.write(f"Final Price: {final_price:.2f} EUR ")
-                    st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
+                st.write("This is Your Price:")
+                st.write("------------------------")
+                st.write(f"m2: {calculation1} EUR ")
+                st.write(f"Invertor: {calculation1 - invertor} EUR ")
+                st.write(f"Final Price: {final_price} EUR ")
+                st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
                     
                     
             else:
                 
-                Button_2 = st.button("Finish", on_click=callback)
-                if Button_2:
-                    calculation1 = question2 * 88
+               
+                calculation1 = float(question2) * 88
                     
                     
-                    invertor = float(question2) * 0.5
                     
-                    final_price = calculation1 - invertor + calculation1 
-                    percent = final_price * 0.3
+                invertor = float(question2) * 0.5
                     
-                    st.write("This is Your Price:")
-                    st.write("------------------------")
-                    st.write(f"m2: {calculation1} EUR ")
-                    st.write(f"Invertor: {calculation1 - invertor} EUR ")
-                    st.write(f"Final Price: {final_price - percent:.2f} EUR ")
-                    st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
+                final_price = calculation1 - invertor + calculation1 
+                percent = final_price * 0.3
+                    
+                    
+                    
+
+                    
+                    
+                st.write("This is Your Price:")
+                st.write("------------------------")
+                    
+                st.write(f"m2: {calculation1} EUR ")
+                st.write(f"Invertor: {calculation1 - invertor} EUR ")
+                st.write(f"Final Price: {final_price - percent} EUR ")
+                st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
         
         
 
