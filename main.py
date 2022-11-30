@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_lottie import st_lottie
 import requests
-from deta import Deta
+
 from PIL import Image
 img = Image.open("web-management.png")
 st.set_page_config(page_title="Configurator", page_icon=img)
