@@ -7,6 +7,7 @@ img = Image.open("web-management.png")
 st.set_page_config(page_title="Configurator", page_icon=img)
 
 
+@st.cache
 
 
 def load_lottieurl(url:str):
@@ -25,6 +26,8 @@ hide_st_style = """
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
 
+        
+
     
 lottie_welcome = load_lottieurl("https://assets6.lottiefiles.com/packages/lf20_oi5jzd9a.json")
 lottie_hello = load_lottieurl("https://assets10.lottiefiles.com/packages/lf20_5Q8WhFyObQ.json")
@@ -35,11 +38,12 @@ if "button_clicked" not in st.session_state:
 def callback():
     st.session_state.button_clicked = True
     
-if "form_submit_button_clicked" not in st.session_state:
-    st.session_state.form_submit_button_clicked = False
-def callback2():
-    st.session_state.form_submit_button_clicked = True
 
+
+
+    
+    
+        
 with header:
     
         
@@ -54,6 +58,10 @@ with header:
     
     st.header("Configurator")
     st_lottie(lottie_welcome, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
+    gender = ["Male", "Female"]
+    at = st.radio("Your Gender",options=gender)
+    text1 = st.text_input("Full Name:")
+    text2 = st.text_input("Email:")
     question1 = ["private","corporate"]
     contact_selected = st.selectbox("What type of user are you?", options=question1)
     question4 = ["Flat Roof","Carport Roof", "Gable Roof"," Mansard Roof","Hip Roof"]
@@ -123,6 +131,9 @@ with header:
     
    
     if Button_1 or st.session_state.button_clicked:
+        txt = open("data.txt", "a")
+        txt.write(f"---------------------\nName: {text1}\nEmail:{text2}\nGender: {at}\n---------------------")
+        txt.close()
         if contact_selected2 == "Yes":
             if contact_selected == "private":
                 question4 = ["4.4", "8.8", "13.2"]
@@ -144,18 +155,9 @@ with header:
                     st.write(f"PVOUT Of Your Country: {value1} kWh/kWp per year")    
                     
                     st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
-                    with st.form("form1", clear_on_submit=False):
-                        st.header("Made your config, Now submit it so we can get in touch")       
-                        form_question_1 = st.text_input("First Name:")
-                        form_question_2 = st.text_input("Last Name:")
-                        form_question_3 = st.date_input("Date of Birth")
-                        form_question_4 = st.text_input("Email:")
-                        gender = ["Male","Female","Other"]
-                        form_question_5 = st.selectbox("Gender:",options=gender )
-                        submit = st.form_submit_button(on_click=callback)
-                        if submit or st.session_state.button_clicked:
-                            st.success("Succses!")   
-                            st.write(form_question_2)
+                    
+                    
+       
                     
                     
             else:
@@ -180,18 +182,8 @@ with header:
                     st.write(f"PVOUT Of Your Country: {value1} kWh/kWp per year")
                     
                     st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
-                    with st.form("form2", clear_on_submit=False):
-                        st.header("Made your config, Now submit it so we can get in touch")       
-                        form_question_1 = st.text_input("First Name:")
-                        form_question_2 = st.text_input("Last Name:")
-                        form_question_3 = st.date_input("Date of Birth")
-                        form_question_4 = st.text_input("Email:")
-                        gender = ["Male","Female","Other"]
-                        form_question_5 = st.selectbox("Gender:",options=gender )
-                        submit = st.form_submit_button(on_click=callback)
-                        if submit or st.session_state.button_clicked:
-                            st.success("Succses!")   
-                            st.write(form_question_2)
+                    
+                    
                     
         else:
             if contact_selected == "private":
@@ -212,18 +204,8 @@ with header:
                 st.write(f"Final Price: {final_price} EUR ")
                 st.write(f"PVOUT Of Your Country: {value1} kWh/kWp per year")
                 st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
-                with st.form("form3", clear_on_submit=False):
-                        st.header("Made your config, Now submit it so we can get in touch")       
-                        form_question_1 = st.text_input("First Name:")
-                        form_question_2 = st.text_input("Last Name:")
-                        form_question_3 = st.date_input("Date of Birth")
-                        form_question_4 = st.text_input("Email:")
-                        gender = ["Male","Female","Other"]
-                        form_question_5 = st.selectbox("Gender:",options=gender )
-                        submit = st.form_submit_button(on_click=callback)
-                        if submit or st.session_state.button_clicked:
-                            st.success("Succses!")   
-                            st.write(form_question_2)
+                
+                
                       
                     
             else:
@@ -252,17 +234,8 @@ with header:
                 st.write(f"PVOUT Of Your Country: {value1} kWh/kWp per year")
                 
                 st_lottie(lottie_hello, speed=1,reverse=False,loop=True,quality="high",height=120,width=120)
-                with st.form("form4", clear_on_submit=False):
-                        st.header("Made your config, Now submit it so we can get in touch")       
-                        form_question_1 = st.text_input("First Name:")
-                        form_question_2 = st.text_input("Last Name:")
-                        form_question_4 = st.text_input("Email:")
-                        gender = ["Male","Female","Other"]
-                        form_question_5 = st.selectbox("Gender:",options=gender )
-                        submit = st.form_submit_button(on_click=callback)
-                        if submit or st.session_state.button_clicked:
-                            st.success("Succses!")   
-                            st.balloons()
+                
+                
                     
 
                     
